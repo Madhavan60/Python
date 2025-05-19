@@ -1,0 +1,4 @@
+a = int(input())  # Read the first integer  
+b = int(input())  # Read the second integer  
+print(a // b)     # Print integer division  
+print(a / b)      # Print float division  
