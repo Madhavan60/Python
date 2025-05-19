@@ -1,0 +1,9 @@
+if __name__ == '__main__':  
+    n = int(input())  # Read the number of scores (not used later)  
+    arr = map(int, input().split())  # Read scores  
+    
+    unique_scores = list(set(arr))  # Remove duplicates  
+    unique_scores.sort(reverse=True)  # Sort in descending order  
+    
+    runner_up_score = unique_scores[1]  # Get the second score  
+    print(runner_up_score)  # Print the runner-up score  
