@@ -1,0 +1,27 @@
+class Solution(object):
+    def numTilings(self, n):
+        memo = {}
+        def find(i, state1, state2, n):
+            if i>n:
+                return 0
+            if (i, state1, state2) in memo:
+                return memo[(i, state1, state2)]
+            elif i==n and state1 and state2:
+                return 1
+            elif i<n:
+                t = 0
+                if state1 and state2:
+                    t+=find(i+2, state1, state2, n)
+                    t+=find(i+1, state1, state2, n)
+                    t+=find(i+1, state1, not state2, n)
+                    t+=find(i+1, not state1, state2, n)
+                elif state1 and not state2:
+                    t+=find(i+2, state1, not state2, n)
+                    t+=find(i+1, not state1, not state2, n)
+                else:
+                    t+=find(i+2, not state1, state2, n)
+                    t+=find(i+1, not state1, not state2, n)
+                memo[(i, state1, state2)]=t%(10**9 + 7)
+                return memo[(i, state1, state2)]
+            return 0 
+        return find(0, True, True, n)
